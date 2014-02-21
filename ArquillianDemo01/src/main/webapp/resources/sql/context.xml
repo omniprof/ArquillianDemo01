@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/ArquillianDemo01">
+	<Resource name="jdbc/fish" auth="Container" type="javax.sql.DataSource"
+		maxActive="20" maxIdle="30" maxWait="10000" username="fish" password="fish"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/aquarium?autoReconnect=true" />
+</Context>
+             

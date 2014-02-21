@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<title>#{msgs.pageTitle}</title>
+</h:head>
+<h:body>
+	<ui:debug hotkey="x"
+		rendered="#{initParam['javax.faces.PROJECT_STAGE'] eq 'Development'}" />
+
+	<h:form>
+		<h:dataTable value="#{fishAction.all}" var="fishies"
+			styleClass="fishies" headerClass="fishHeader"
+			columnClasses="fishId,commonName" rowClasses="oddrow,evenrow">
+			<h:column>
+				<f:facet name="header">#{msgs.fishIdHeader}</f:facet>
+               #{fishies.id}
+            </h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.commonNameHeader}</f:facet>
+               #{fishies.commonName}
+            </h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.latinNameHeader}</f:facet>
+               #{fishies.latin}
+            </h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.speciesOriginHeader}</f:facet>
+               #{fishies.speciesOrigin}
+            </h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.khHeader}</f:facet>
+               #{fishies.kh}
+            </h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.phHeader}</f:facet>
+               #{fishies.ph}
+            </h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.fishSizeHeader}</f:facet>
+               #{fishies.fishSize}
+            </h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.stockingHeader}</f:facet>
+               #{fishies.stocking}
+            </h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.tankSizeHeader}</f:facet>
+               #{fishies.tankSize}
+            </h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.dietHeader}</f:facet>
+               #{fishies.diet}
+            </h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.tempHeader}</f:facet>
+               #{fishies.temp}
+            </h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>

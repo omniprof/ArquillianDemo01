@@ -1,1 +1,29 @@
-/target
+# HSQL DB
+data/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea
+
+# Gradle
+.gradle/
+.ivy/
+
+# Maven
+target/
+
+# Logs
+*.log
+*.log~
+
+# Libreoffice leftovers (XLS)
+.~lock*
+
+atlassian-ide-plugin.xml

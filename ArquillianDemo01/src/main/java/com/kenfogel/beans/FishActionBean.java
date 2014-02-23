@@ -37,7 +37,7 @@ public class FishActionBean implements Serializable {
 		List<FishData> fishies = new ArrayList<>();
 
 		try (Connection conn = ds.getConnection();
-				PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Fish");
+				PreparedStatement stmt = conn.prepareStatement("SELECT * FROM FISH");
 				ResultSet resultSet = stmt.executeQuery();) {
 			while (resultSet.next()) {
 				FishData fishData = new FishData();

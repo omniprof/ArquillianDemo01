@@ -50,28 +50,13 @@
 
     <profiles>
         <profile>
-            <!-- This is the build for testing. It includes all the Arquillian libraries
-                and creates a large war file. It is the default activation so that Eclipse
-                sees the libraries for the code in src/test/java -->
             <!-- Name of this profile -->
-            <id>test_build</id>
+            <id>arquillian-tomee-remote</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <!-- These dependencies define the bill of materials -->
 
-            <!-- These are the dependencies for Arquillian -->
-            <!-- A project built with these dependencies will have all -->
-            <!-- of the jars required added to the war file -->
             <dependencies>
-                <!-- Embedded server -->
-                <!-- 				<dependency> -->
-                <!-- 					<groupId>org.apache.openejb</groupId> -->
-                <!-- 					<artifactId>arquillian-tomee-embedded</artifactId> -->
-                <!-- 					<version>${tomee.version}</version> -->
-                <!-- 					<scope>test</scope> -->
-                <!-- 				</dependency> -->
-                <!-- Remote server. -->
                 <dependency>
                     <groupId>org.apache.openejb</groupId>
                     <artifactId>arquillian-tomee-remote</artifactId>
@@ -86,6 +71,42 @@
                     <type>zip</type>
                 </dependency>
             </dependencies>
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test/resources-tomee-remote</directory>
+                    </testResource>
+                </testResources>
+            </build>
+        </profile>
+
+        <profile>
+            <id>arquillian-tomee-embedded</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.openejb</groupId>
+                    <artifactId>arquillian-tomee-embedded</artifactId>
+                    <version>${tomee.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                    <!-- if you need some specific configuration for this server
+                         such as arquillian.xml you can put it to the additional
+                         resource folder like the following:
+                    <testResource>
+                        <directory>src/test/resources-tomee-embedded</directory>
+                    </testResource>
+                    -->
+                </testResources>
+            </build>
         </profile>
 
         <!-- This is the profile without the Arquillian test libraries. -->
@@ -228,15 +249,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.16</version>
-                <configuration>
-                    <systemPropertyVariables>
-                        <!-- randomize the server port -->
-                        <tomee.httpPort>-1</tomee.httpPort>
-                        <tomee.stopPort>-1</tomee.stopPort>
-                        <tomee.classifier>${tomee.classifier}</tomee.classifier>
-                        <tomee.version>${tomee.version}</tomee.version>
-                    </systemPropertyVariables>
-                </configuration>
             </plugin>
 
             <!-- responsible for collecting all artifact dependencies, classes and
